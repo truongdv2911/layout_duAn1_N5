@@ -17,6 +17,7 @@ public class User_MuaHang extends javax.swing.JFrame {
      */Color colorDefault = new Color(42,58,73);
     public User_MuaHang() {
         initComponents();
+        setLocation(650, 260);
     }
 
     /**

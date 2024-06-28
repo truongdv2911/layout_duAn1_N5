@@ -19,6 +19,7 @@ public class QuanLiSanPham extends javax.swing.JFrame {
      */Color colorDefault = new Color(42,58,73);
     public QuanLiSanPham() {
         initComponents();
+        setLocation(650, 260);
     }
 
     /**

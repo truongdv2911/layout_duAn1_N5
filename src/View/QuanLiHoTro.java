@@ -21,6 +21,7 @@ public class QuanLiHoTro extends javax.swing.JFrame {
     Color colorDefault = new Color(42,58,73);
     public QuanLiHoTro() {
         initComponents();
+        setLocation(650, 260);
     }
 
     /**

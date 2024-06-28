@@ -17,6 +17,7 @@ public class User_HoTro extends javax.swing.JFrame {
      */Color colorDefault = new Color(42,58,73);
     public User_HoTro() {
         initComponents();
+        setLocation(650, 280);
     }
 
     /**
