@@ -5,24 +5,31 @@
             <url>src/View/Main_Admin.java</url>
             <bookmark id="1">
                 <name/>
-                <line>531</line>
+                <line>471</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Du_An_1_N5/src/View/QuanLiHoTro.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/QuanLiUser.java</file>
+            <file>file:/E:/Du_An_1_N5/src/controller/MenuBar.java</file>
+            <file>file:/E:/Du_An_1_N5/src/model/HoaDon.java</file>
+            <file>file:/E:/Du_An_1_N5/src/View/QuanLiNhanHang_pn.java</file>
+            <file>file:/E:/Du_An_1_N5/src/model/HangSP.java</file>
+            <file>file:/E:/Du_An_1_N5/src/model/NhanVien.java</file>
+            <file>file:/E:/Du_An_1_N5/src/controller/ChuyenManHinh.java</file>
+            <file>file:/E:/Du_An_1_N5/src/View/QuanLiNhanVien.java</file>
+            <file>file:/E:/Du_An_1_N5/src/View/QuanLiBanHang.java</file>
+            <file>file:/E:/Du_An_1_N5/src/View/QuanLiHoaDon_pn.java</file>
+            <file>file:/E:/Du_An_1_N5/src/DAO/DAO_Admin.java</file>
+            <file>file:/E:/Du_An_1_N5/src/View/QuanLiSanPham_pn.java</file>
             <file>file:/E:/Du_An_1_N5/src/View/Login.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/User_HoaDon.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/Main_user.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/QuanLiNhanHang.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/User_HoTro.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/QuanLiSanPham.java</file>
+            <file>file:/E:/Du_An_1_N5/src/View/TrangChu_pn.java</file>
+            <file>file:/E:/Du_An_1_N5/src/ConnectDB/ConnectDB.java</file>
             <file>file:/E:/Du_An_1_N5/src/View/Main_Admin.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/QuanLiHoaDon.java</file>
-            <file>file:/E:/Du_An_1_N5/src/View/User_MuaHang.java</file>
+            <file>file:/E:/Du_An_1_N5/src/model/SanPham.java</file>
+            <file>file:/E:/Du_An_1_N5/src/model/Admin.java</file>
+            <file>file:/E:/Du_An_1_N5/src/model/BanHang.java</file>
         </group>
     </open-files>
 </project-private>
