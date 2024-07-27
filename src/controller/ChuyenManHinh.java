@@ -4,6 +4,7 @@
  */
 package controller;
 
+import View.GiamGia;
 import View.Main_Admin;
 import View.QuanLiBanHang;
 import View.QuanLiHoaDon_pn;
@@ -72,6 +73,9 @@ public class ChuyenManHinh {
                     break;
                 case "TrangChu":
                     node = new TrangChu_pn();
+                    break;
+                case "KhuyenMai":
+                    node = new GiamGia();
                     break;
             }
                 jpnRoot.removeAll();

@@ -3,7 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
-
+import ConnectDB.ConnectDB;
+import DAO.DAO_NhanHang;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.NhanHang;
 /**
  *
  * @author Admin
@@ -13,10 +22,34 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
     /**
      * Creates new form QuanLiNhanHang_pn
      */
+    private static Connection conn;
+    List<NhanHang> arrNH = new ArrayList<>();
+    DAO_NhanHang NH = new DAO_NhanHang();
     public QuanLiNhanHang_pn() {
         initComponents();
+        arrNH = NH.ListNhanHang();
+        this.fillToTbl();
+        txtIdNhanHang.setEnabled(false);
     }
-
+    public void fillToTbl(){
+        String[] title = {"ID","Tên nhãn hàng","Mô tả"};
+        DefaultTableModel model = new DefaultTableModel(title, 0);
+        arrNH = NH.ListNhanHang();
+        for (NhanHang nhanHang : arrNH) {
+            Object[] rows = {nhanHang.getIdNhanHang(),nhanHang.getTenNhanHang(),nhanHang.getMoTa()};
+            model.addRow(rows);
+        }
+        tblNhanHang.setModel(model);
+    }
+    public void fillToTbl2(){
+        String[] title = {"ID","Tên nhãn hàng","Mô tả"};
+        DefaultTableModel model = new DefaultTableModel(title, 0);
+        for (NhanHang nhanHang : arrNH) {
+            Object[] rows = {nhanHang.getIdNhanHang(),nhanHang.getTenNhanHang(),nhanHang.getMoTa()};
+            model.addRow(rows);
+        }
+        tblNhanHang.setModel(model);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,24 +60,24 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        tblNhanHang = new javax.swing.JTable();
+        txtIdNhanHang = new javax.swing.JTextField();
+        txtMoTa = new javax.swing.JTextField();
+        txtTenNhanHang = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFind = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btAdd = new javax.swing.JButton();
+        btClear = new javax.swing.JButton();
+        btDelete = new javax.swing.JButton();
+        btUpdate = new javax.swing.JButton();
 
         jpnRoot.setBackground(new java.awt.Color(204, 204, 255));
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNhanHang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblNhanHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,13 +88,18 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblNhanHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanHangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblNhanHang);
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        txtIdNhanHang.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        txtMoTa.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        txtTenNhanHang.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel2.setText("ID Nhãn Hàng");
@@ -72,24 +110,54 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel3.setText("Mô Tả");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        txtFind.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        txtFind.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        txtFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFindActionPerformed(evt);
+            }
+        });
+        txtFind.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtFindKeyReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel1.setText("Tìm Kiếm");
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton1.setText("Add");
-        jButton1.setBorderPainted(false);
+        btAdd.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btAdd.setText("Add");
+        btAdd.setBorderPainted(false);
+        btAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton2.setText("Clear");
+        btClear.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btClear.setText("Clear");
+        btClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton4.setText("Delete");
+        btDelete.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btDelete.setText("Delete");
+        btDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDeleteActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton3.setText("Update");
+        btUpdate.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btUpdate.setText("Update");
+        btUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
         jpnRoot.setLayout(jpnRootLayout);
@@ -101,24 +169,24 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpnRootLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpnRootLayout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdNhanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTenNhanHang, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMoTa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpnRootLayout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(53, 53, 53)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(btUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
@@ -128,7 +196,7 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnRootLayout.createSequentialGroup()
                 .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,23 +205,23 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
                 .addGap(112, 112, 112)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdNhanHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTenNhanHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMoTa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(btAdd)
+                    .addComponent(btUpdate))
                 .addGap(18, 18, 18)
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2))
+                    .addComponent(btDelete)
+                    .addComponent(btClear))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -179,22 +247,151 @@ public class QuanLiNhanHang_pn extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblNhanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanHangMouseClicked
+        int row = tblNhanHang.getSelectedRow();
+        NhanHang nh = arrNH.get(row);
+        txtIdNhanHang.setText(String.valueOf(nh.getIdNhanHang()));
+        txtTenNhanHang.setText(nh.getTenNhanHang());
+        txtMoTa.setText(nh.getMoTa());
+    }//GEN-LAST:event_tblNhanHangMouseClicked
+
+    private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
+        txtTenNhanHang.setText(null);
+        txtMoTa.setText(null);
+        txtFind.setText(null);
+        ArrayList listId = new ArrayList<>();
+        for (NhanHang nhanHang : arrNH) {
+            listId.add(nhanHang.getIdNhanHang());
+        }
+        int id =0;
+        
+            id = (int) Collections.max(listId)+1;
+        
+        txtIdNhanHang.setText(String.valueOf(id));
+        fillToTbl();
+    }//GEN-LAST:event_btClearActionPerformed
+
+    public boolean chechNull(){
+        if(txtTenNhanHang.getText().isEmpty()||txtMoTa.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đủ thông tin");
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    public boolean checkId(){
+        arrNH = NH.ListNhanHang();
+        for (NhanHang nhanHang : arrNH) {
+            if(!txtIdNhanHang.getText().equalsIgnoreCase(String.valueOf(nhanHang.getIdNhanHang()))){
+                JOptionPane.showMessageDialog(this, "Mã đã bị trùng");
+                return false;
+            }else{
+                return true;
+            }
+        }
+        return true;
+    }
+    
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        if(chechNull()){
+            
+                try {
+            conn = ConnectDB.getConN();
+            String sql = ("insert into NhanHang\n" +"values (?,?)");
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, txtTenNhanHang.getText().trim());
+            ps.setString(2, txtMoTa.getText().trim());
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+            this.fillToTbl();
+        } catch (SQLException e) {
+            System.out.println("Loi"+e);
+        }
+            }   
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
+        if(chechNull()){
+            try {
+            conn = ConnectDB.getConN();
+            String sql = ("Update NhanHang set TenNhanHang = ?, moTa = ? where idNhanHang = ?");
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, txtTenNhanHang.getText().trim());
+            ps.setString(2, txtMoTa.getText().trim());
+            ps.setInt(3, Integer.valueOf(txtIdNhanHang.getText()));
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Cập nhật thành công");
+            this.fillToTbl();
+        } catch (SQLException e) {
+            System.out.println("Loi"+e);
+        }
+        }
+    }//GEN-LAST:event_btUpdateActionPerformed
+
+    private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
+        if(chechNull()){
+            int choose = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa không", "Comfirm", JOptionPane.YES_OPTION);
+        if(choose==JOptionPane.YES_OPTION){
+            try {
+            conn = ConnectDB.getConN();
+            String sql = ("Delete from sanPham where idNhanHang = ?");
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, Integer.valueOf(txtIdNhanHang.getText()));
+            ps.executeUpdate();
+            String sql2 = ("Delete from NhanHang where idNhanHang = ?");
+            ps = conn.prepareStatement(sql2);
+            ps.setInt(1, Integer.valueOf(txtIdNhanHang.getText()));
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Xóa thành công");
+            this.fillToTbl();
+        } catch (SQLException e) {
+            System.out.println("Loi"+e);
+        }
+        }
+        }
+    }//GEN-LAST:event_btDeleteActionPerformed
+
+    private void txtFindKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFindKeyReleased
+        arrNH.clear();
+        try {
+            conn = ConnectDB.getConN();
+            String sql = ("select idNhanHang, tenNhanHang, moTa from NhanHang where TenNhanHang like N'%"+txtFind.getText().trim()+"%' ");
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                NhanHang nh = new NhanHang();
+                nh.setIdNhanHang(rs.getInt(1));
+                nh.setTenNhanHang(rs.getString(2).trim());
+                nh.setMoTa(rs.getString(3).trim());
+                arrNH.add(nh);
+            }
+            fillToTbl2();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtFindKeyReleased
+
+    private void txtFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFindActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFindActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btAdd;
+    private javax.swing.JButton btClear;
+    private javax.swing.JButton btDelete;
+    private javax.swing.JButton btUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     public static final javax.swing.JPanel jpnRoot = new javax.swing.JPanel();
+    private javax.swing.JTable tblNhanHang;
+    private javax.swing.JTextField txtFind;
+    private javax.swing.JTextField txtIdNhanHang;
+    private javax.swing.JTextField txtMoTa;
+    private javax.swing.JTextField txtTenNhanHang;
     // End of variables declaration//GEN-END:variables
 }

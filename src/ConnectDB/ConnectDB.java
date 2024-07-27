@@ -14,7 +14,7 @@ public class ConnectDB {
     try {
         if(conn == null){
             String dbUser = "sa",dbPass = "truong2911",
-                   dbUrl = "jdbc:sqlserver://localhost:1433;databaseName=duAn_1_N5;encrypt=true;trustServerCertificate=true;";
+                   dbUrl = "jdbc:sqlserver://localhost:1433;databaseName=duAn_1_N5_test3;encrypt=true;trustServerCertificate=true;";
         conn = DriverManager.getConnection(dbUrl,dbUser,dbPass);
         System.out.println("ok");
         }

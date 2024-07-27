@@ -34,6 +34,7 @@ public class Main_Admin extends javax.swing.JFrame {
         listMenu.add(new MenuBar("HoaDon", jPanel13, jLabel21));
         listMenu.add(new MenuBar("BanHang", jPanel16, jLabel20));
         listMenu.add(new MenuBar("TrangChu", jPanel5, jLabel4));
+        listMenu.add(new MenuBar("KhuyenMai",jPanel12,jLabel8));
         control.setEvent(listMenu);
     }
 
@@ -64,6 +65,8 @@ public class Main_Admin extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -417,6 +420,54 @@ public class Main_Admin extends javax.swing.JFrame {
 
         jPanel4.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 210, 50));
 
+        jPanel12.setBackground(new java.awt.Color(42, 58, 73));
+
+        jPanel19.setBackground(new java.awt.Color(42, 58, 73));
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 12, Short.MAX_VALUE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 49, Short.MAX_VALUE)
+        );
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Khuyến mại");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel8)
+                .addGap(0, 62, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 210, 50));
+
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 210, 570));
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
 
@@ -480,6 +531,8 @@ public class Main_Admin extends javax.swing.JFrame {
         jPanel17.setBackground(colorDefault);
         jPanel13.setBackground(colorDefault);
         jPanel18.setBackground(colorDefault);
+        jPanel12.setBackground(colorDefault);
+        jPanel19.setBackground(colorDefault);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -495,6 +548,8 @@ public class Main_Admin extends javax.swing.JFrame {
         jPanel17.setBackground(colorDefault);
         jPanel13.setBackground(colorDefault);
         jPanel18.setBackground(colorDefault);
+        jPanel12.setBackground(colorDefault);
+        jPanel19.setBackground(colorDefault);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
@@ -510,6 +565,8 @@ public class Main_Admin extends javax.swing.JFrame {
         jPanel17.setBackground(colorDefault);
         jPanel13.setBackground(colorDefault);
         jPanel18.setBackground(colorDefault);
+        jPanel12.setBackground(colorDefault);
+        jPanel19.setBackground(colorDefault);
     }//GEN-LAST:event_jLabel18MouseClicked
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
@@ -530,6 +587,9 @@ public class Main_Admin extends javax.swing.JFrame {
         jPanel11.setBackground(colorDefault);
         jPanel13.setBackground(colorDefault);
         jPanel18.setBackground(colorDefault);
+        
+        jPanel12.setBackground(colorDefault);
+        jPanel19.setBackground(colorDefault);
     }//GEN-LAST:event_jLabel20MouseClicked
 
     private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
@@ -545,6 +605,8 @@ public class Main_Admin extends javax.swing.JFrame {
         jPanel10.setBackground(colorDefault);
         jPanel6.setBackground(colorDefault);
         jPanel9.setBackground(colorDefault);
+        jPanel12.setBackground(colorDefault);
+        jPanel19.setBackground(colorDefault);
     }//GEN-LAST:event_jLabel21MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -559,7 +621,25 @@ public class Main_Admin extends javax.swing.JFrame {
         jPanel9.setBackground(colorDefault);
         jPanel13.setBackground(colorDefault);
         jPanel18.setBackground(colorDefault);
+        jPanel12.setBackground(colorDefault);
+        jPanel19.setBackground(colorDefault);
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        // TODO add your handling code here:
+        jPanel12.setBackground(Color.DARK_GRAY);
+        jPanel19.setBackground(Color.GREEN);
+        jPanel16.setBackground(colorDefault);
+        jPanel17.setBackground(colorDefault);
+        jPanel8.setBackground(colorDefault);
+        jPanel11.setBackground(colorDefault);
+        jPanel7.setBackground(colorDefault);
+        jPanel10.setBackground(colorDefault);
+        jPanel6.setBackground(colorDefault);
+        jPanel9.setBackground(colorDefault);
+        jPanel13.setBackground(colorDefault);
+        jPanel18.setBackground(colorDefault);
+    }//GEN-LAST:event_jLabel8MouseClicked
 
     /**
      * @param args the command line arguments
@@ -608,16 +688,19 @@ public class Main_Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    public static javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     public static final javax.swing.JPanel jPanel10 = new javax.swing.JPanel();
     public static final javax.swing.JPanel jPanel11 = new javax.swing.JPanel();
+    public static final javax.swing.JPanel jPanel12 = new javax.swing.JPanel();
     public static final javax.swing.JPanel jPanel13 = new javax.swing.JPanel();
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     public static final javax.swing.JPanel jPanel16 = new javax.swing.JPanel();
     public static final javax.swing.JPanel jPanel17 = new javax.swing.JPanel();
     public static final javax.swing.JPanel jPanel18 = new javax.swing.JPanel();
+    public static javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
